@@ -31,4 +31,5 @@ steps:
   inputs:
     serverEndpoint: AppCenter
     appSlug: marvinpuethe96/Oetkerlebnis
-    appFile: 
+    appFile: '**/*.apk'
+    releaseNotesInput: 'Dev Release'
