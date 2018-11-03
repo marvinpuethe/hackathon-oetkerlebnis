@@ -6,6 +6,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.ImageFormat;
@@ -820,17 +821,17 @@ public class Camera2BasicFragment extends Fragment
                 public void onCaptureCompleted(@NonNull CameraCaptureSession session,
                                                @NonNull CaptureRequest request,
                                                @NonNull TotalCaptureResult result) {
-                    showToast("Saved: " + mFile);
-
 
                     ACS_Image_Classification ic = new ACS_Image_Classification();
-                    //TODO: Prepare string, split into path, filename
-                    String ret = ic.run_object_recognition("/storage/emulated/0/Android/data/com.oetker.oetkerlebnis/files", "/pic.jpg");
-                    System.out.println(ret);
-                    //TODO: Evaluate return and show result
+                    try {
+                        //TODO: Prepare string, split into path, filename
+                        String ret = ic.run_object_recognition("/storage/emulated/0/Android/data/com.oetker.oetkerlebnis/files", "/pic.jpg");
+                        System.out.println(ret);
+                        //TODO: Evaluate return and show result
+                    } catch(Exception e) {
+                        showToast("Es ist ein Fehler aufgetreten!");
+                    }
 
-
-                    Log.d(TAG, mFile.toString());
                     unlockFocus();
                 }
             };
