@@ -55,6 +55,8 @@ import java.util.List;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.TimeUnit;
 
+import com.oetker.oetkerlebnis.vision.*;
+
 public class Camera2BasicFragment extends Fragment
         implements View.OnClickListener, ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -819,6 +821,15 @@ public class Camera2BasicFragment extends Fragment
                                                @NonNull CaptureRequest request,
                                                @NonNull TotalCaptureResult result) {
                     showToast("Saved: " + mFile);
+
+
+                    ACS_Image_Classification ic = new ACS_Image_Classification();
+                    //TODO: Prepare string, split into path, filename
+                    String ret = ic.run_object_recognition("/storage/emulated/0/Android/data/com.oetker.oetkerlebnis/files", "/pic.jpg");
+                    System.out.println(ret);
+                    //TODO: Evaluate return and show result
+
+
                     Log.d(TAG, mFile.toString());
                     unlockFocus();
                 }

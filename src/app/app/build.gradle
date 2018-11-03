@@ -32,6 +32,6 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
-    //compile group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
-    //compile group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
+    implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
+    implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
 }
