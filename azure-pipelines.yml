@@ -26,3 +26,9 @@ steps:
     pathToPublish: '$(build.artifactStagingDirectory)'
     artifactName: 'drop'
     artifactType: 'container'
+
+- task: AppCenterDistribute@1
+  inputs:
+    serverEndpoint: AppCenter
+    appSlug: marvinpuethe96/Oetkerlebnis
+    appFile: 
