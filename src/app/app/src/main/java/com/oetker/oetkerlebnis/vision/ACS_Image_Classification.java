@@ -1,4 +1,4 @@
-package com.oetker.oetkerlebnis.vision;
+/*package com.oetker.oetkerlebnis.vision;
 
 import android.support.annotation.Nullable;
 
@@ -83,3 +83,4 @@ public class ACS_Image_Classification {
         return null;
     }
 }
+*/
