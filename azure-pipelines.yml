@@ -9,8 +9,8 @@ pool:
 steps:
 - task: Gradle@2
   inputs:
-    workingDirectory: ''
-    gradleWrapperFile: 'src/app/gradlew'
+    workingDirectory: 'src/app'
+    gradleWrapperFile: 'gradlew'
     gradleOptions: '-Xmx3072m'
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
