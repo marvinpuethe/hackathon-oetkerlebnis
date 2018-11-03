@@ -16,6 +16,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    packagingOptions {
+        exclude 'maven.properties'
+    }
 }
 
 dependencies {
@@ -31,6 +34,8 @@ dependencies {
     def appCenterSdkVersion = '1.9.0'
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
+
+    annotationProcessor 'com.microsoft.azure:azure-annotations:1.2.0'
 
     implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
     implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
