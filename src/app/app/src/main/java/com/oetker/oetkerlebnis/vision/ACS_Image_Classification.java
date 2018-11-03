@@ -15,7 +15,9 @@ import com.microsoft.azure.cognitiveservices.vision.customvision.training.models
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.DomainType;
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.Project;
 
+import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,7 +25,10 @@ public class ACS_Image_Classification {
     private static byte[] GetImage(String path)
     {
         try {
-            return ByteStreams.toByteArray(ACS_Image_Classification.class.getResourceAsStream(path));
+            File fi = new File(path);
+            byte[] fileContent = Files.readAllBytes(fi.toPath());
+
+            return fileContent;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
