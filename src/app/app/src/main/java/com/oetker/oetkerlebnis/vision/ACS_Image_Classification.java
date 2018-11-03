@@ -72,14 +72,8 @@ public class ACS_Image_Classification {
 
         for (Prediction prediction: results.predictions())
         {
-            return String.format("\t%s: %.2f%% at: %.2f, %.2f, %.2f, %.2f",
-                    prediction.tagName(),
-                    prediction.probability() * 100.0f,
-                    prediction.boundingBox().left(),
-                    prediction.boundingBox().top(),
-                    prediction.boundingBox().width(),
-                    prediction.boundingBox().height()
-            );
+            double probability = prediction.probability() * 100.0f;
+            return Double.toString(probability);
         }
 
         return null;

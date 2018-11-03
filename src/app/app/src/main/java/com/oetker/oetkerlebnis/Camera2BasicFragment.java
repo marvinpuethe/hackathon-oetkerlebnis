@@ -2,8 +2,10 @@ package com.oetker.oetkerlebnis;
 
 import android.Manifest;
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -824,12 +826,20 @@ public class Camera2BasicFragment extends Fragment
 
                     ACS_Image_Classification ic = new ACS_Image_Classification();
                     try {
-                        //TODO: Prepare string, split into path, filename
                         String ret = ic.run_object_recognition(mFile.toString());
                         System.out.println(ret);
-                        //TODO: Evaluate return and show result
+                        if(ret != null) {
+                            double value = Double.valueOf(ret);
+                            if(value >= 90) {
+                                //TODO: Trigger "LuckyActivity"
+                            } else {
+                                showToast("Wir sind uns nicht sicher, ob dies ein Produkt unseres Hauses ist. Bitte versuche es erneut!");
+                            }
+                        } else {
+                            showToast("Das Bild konnte nicht erkannt werden. Bitte versuche es erneut!");
+                        }
                     } catch(Exception e) {
-                        showToast("Es ist ein Fehler aufgetreten!");
+                        showToast("Es ist ein unbekannter Fehler aufgetreten!");
                         System.out.println(e.getMessage());
                         e.printStackTrace();
                     }
