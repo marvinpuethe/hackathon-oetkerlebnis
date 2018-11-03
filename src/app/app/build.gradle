@@ -4,7 +4,7 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.oetker.oetkerlebnis"
-        minSdkVersion 21
+        minSdkVersion 26
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -15,6 +15,9 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    packagingOptions {
+        exclude 'maven.properties'
     }
 }
 
@@ -32,6 +35,8 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
-    //compile group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
-    //compile group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
+    annotationProcessor 'com.microsoft.azure:azure-annotations:1.2.0'
+
+    implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
+    implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
 }

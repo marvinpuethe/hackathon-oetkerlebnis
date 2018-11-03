@@ -1,4 +1,4 @@
-/*package com.oetker.oetkerlebnis.vision;
+package com.oetker.oetkerlebnis.vision;
 
 import android.support.annotation.Nullable;
 
@@ -15,13 +15,20 @@ import com.microsoft.azure.cognitiveservices.vision.customvision.training.models
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.DomainType;
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.Project;
 
+import java.io.File;
+import java.io.InputStream;
+import java.nio.file.Files;
 import java.util.List;
+import java.util.UUID;
 
 public class ACS_Image_Classification {
-    private static byte[] GetImage(String folder, String fileName)
+    private static byte[] GetImage(String path)
     {
         try {
-            return ByteStreams.toByteArray(ACS_Image_Classification.class.getResourceAsStream(folder + "/" + fileName));
+            File fi = new File(path);
+            byte[] fileContent = Files.readAllBytes(fi.toPath());
+
+            return fileContent;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -30,8 +37,8 @@ public class ACS_Image_Classification {
     }
 
     @Nullable
-    public String run_object_recognition(String path, String file) {
-        final String trainingApiKey = "insert your training key here";
+    public String run_object_recognition(String path) {
+        final String trainingApiKey = "54b99ae4ff6c413ca0059f2ba295fd38";
         TrainingApi trainClient = CustomVisionTrainingManager.authenticate(trainingApiKey);
 
         System.out.println("Object Detection Sample");
@@ -51,17 +58,12 @@ public class ACS_Image_Classification {
             return null;
         }
 
-        Project project = trainer.createProject()
-                .withName("Oetkerlebnis")
-                .withDescription("Dr. Oetker interaktive Erlebnistour")
-                .withDomainId(objectDetectionDomain.id())
-                .withClassificationType(Classifier.MULTILABEL.toString())
-                .execute();
+        Project project = trainer.getProject(UUID.fromString("0dbbe807-f10d-4fa3-8244-b7dbf55a771f"));
 
-        final String predictionApiKey = "insert your prediction key here";
+        final String predictionApiKey = "bb605890bc14416aa5f27150a9525d44";
         PredictionEndpoint predictClient = CustomVisionPredictionManager.authenticate(predictionApiKey);
 
-        byte[] testImage = GetImage(path, file);
+        byte[] testImage = GetImage(path);
 
         ImagePrediction results = predictClient.predictions().predictImage()
                 .withProjectId(project.id())
@@ -70,17 +72,10 @@ public class ACS_Image_Classification {
 
         for (Prediction prediction: results.predictions())
         {
-            return String.format("\t%s: %.2f%% at: %.2f, %.2f, %.2f, %.2f",
-                    prediction.tagName(),
-                    prediction.probability() * 100.0f,
-                    prediction.boundingBox().left(),
-                    prediction.boundingBox().top(),
-                    prediction.boundingBox().width(),
-                    prediction.boundingBox().height()
-            );
+            double probability = prediction.probability() * 100.0f;
+            return Double.toString(probability);
         }
 
         return null;
     }
 }
-*/

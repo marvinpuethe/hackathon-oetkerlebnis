@@ -34,7 +34,9 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_gravity="center"
-            android:text="@string/picture" />
+            android:text="@string/picture"
+            android:background="@color/control_background"
+            android:textColor="#ffffff" />
 
     </FrameLayout>
 

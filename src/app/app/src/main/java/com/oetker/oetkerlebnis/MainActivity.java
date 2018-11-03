@@ -19,14 +19,11 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    System.out.println("DEBUG: home");
                     return true;
                 case R.id.navigation_camera:
-                    System.out.println("DEBUG: camera");
                     startActivity(new Intent(MainActivity.this, CameraActivity.class));
                     return true;
                 case R.id.navigation_settings:
-                    System.out.println("DEBUG: settings");
                     //startActivity(new Intent(CameraActivity.this, SettingsActivity.class));
                     return true;
             }
