@@ -33,3 +33,4 @@ steps:
     appSlug: marvinpuethe96/Oetkerlebnis
     appFile: '**/*.apk'
     releaseNotesInput: 'Dev Release'
+    distributionGroupId: '7ceeea2b-8349-4d63-823b-0c801f64b883'
