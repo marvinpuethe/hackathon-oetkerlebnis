@@ -1,18 +1,17 @@
 package com.oetker.oetkerlebnis;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
-import android.widget.TextView;
 
 import com.microsoft.appcenter.AppCenter;
 import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 
 public class MainActivity extends AppCompatActivity {
-
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
@@ -20,13 +19,15 @@ public class MainActivity extends AppCompatActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    setContentView(R.layout.activity_main);
+                    System.out.println("DEBUG: home");
                     return true;
                 case R.id.navigation_camera:
-                    setContentView(R.layout.activity_camera);
+                    System.out.println("DEBUG: camera");
+                    startActivity(new Intent(MainActivity.this, CameraActivity.class));
                     return true;
                 case R.id.navigation_settings:
-                    //setContentView(R.layout.?);
+                    System.out.println("DEBUG: settings");
+                    //startActivity(new Intent(CameraActivity.this, SettingsActivity.class));
                     return true;
             }
             return false;
@@ -41,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        navigation.bringToFront();
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
 
