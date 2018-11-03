@@ -28,8 +28,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="Rezepte"
-                android:background="@drawable/backteig"
+                android:text="Familienaktionen"
+                android:background="@drawable/one"
                 android:textColor="#ffffff" />
 
             <Button
@@ -38,8 +38,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="New Button"
-                android:background="@drawable/restekueche"
+                android:text="B(e)akon-Jagt"
+                android:background="@drawable/two"
                 android:textColor="#ffffff" />
         </LinearLayout>
 
@@ -56,8 +56,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="New Button"
-                android:background="@drawable/schneidebrett"
+                android:text="Rezepte"
+                android:background="@drawable/three"
                 android:textColor="#ffffff" />
 
             <Button
@@ -66,8 +66,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="New Button"
-                android:background="@drawable/nudeln"
+                android:text="Neuheiten"
+                android:background="@drawable/four"
                 android:textColor="#ffffff" />
         </LinearLayout>
 
@@ -84,8 +84,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="New Button"
-                android:background="@drawable/food"
+                android:text="Desserts"
+                android:background="@drawable/five"
                 android:textColor="#ffffff" />
 
             <Button
@@ -94,8 +94,8 @@
                 android:layout_height="fill_parent"
                 android:layout_gravity="center_vertical"
                 android:layout_weight="1"
-                android:text="New Button"
-                android:background="@drawable/buffet"
+                android:text="Reste verwerten"
+                android:background="@drawable/six"
                 android:textColor="#ffffff" />
         </LinearLayout>
     </LinearLayout>
