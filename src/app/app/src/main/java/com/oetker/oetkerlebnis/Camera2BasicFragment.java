@@ -825,11 +825,13 @@ public class Camera2BasicFragment extends Fragment
                     ACS_Image_Classification ic = new ACS_Image_Classification();
                     try {
                         //TODO: Prepare string, split into path, filename
-                        String ret = ic.run_object_recognition("/storage/emulated/0/Android/data/com.oetker.oetkerlebnis/files", "/pic.jpg");
+                        String ret = ic.run_object_recognition(mFile.toString());
                         System.out.println(ret);
                         //TODO: Evaluate return and show result
                     } catch(Exception e) {
                         showToast("Es ist ein Fehler aufgetreten!");
+                        System.out.println(e.getMessage());
+                        e.printStackTrace();
                     }
 
                     unlockFocus();
