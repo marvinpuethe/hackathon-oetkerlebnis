@@ -39,4 +39,6 @@ dependencies {
 
     implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-prediction', version: '1.0.2-beta'
     implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
+
+    implementation 'com.estimote:sdk:1.4.5'
 }
