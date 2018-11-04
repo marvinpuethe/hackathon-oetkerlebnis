@@ -22,6 +22,13 @@ public class EstimoteBasicFragment {
         cloudCredentials = new EstimoteCloudCredentials("YOUR APP ID HERE", "YOUR APP TOKEN HERE");
         cloudManager = new IndoorCloudManagerFactory().create(applicationContext, cloudCredentials);
 
+        NotificationCompat.Builder notification = NotificationCompat.Builder(this)
+              .setSmallIcon(R.drawable.notification_icon_background)
+              .setContentTitle("Indoor location")
+              .setContentText("Scan is running...")
+              .setPriority(Notification.PRIORITY_HIGH)
+              .build();
+
         public final Location location = cloudManager.getLocation("IDK", new CloudCallback<Location>() {
             @Override
             public void success(Location location) {
@@ -34,12 +41,19 @@ public class EstimoteBasicFragment {
             }
         });
 
-        ScanningIndoorLocationManager indoorLocationManager = new IndoorLocationManagerBuilder(this, location, cloudCredentials).withDefaultScanner().build();
+        ScanningIndoorLocationManager indoorLocationManager = new IndoorLocationManagerBuilder(this, location, cloudCredentials)
+            .withScannerInForegroundService(notification)
+            .build();
 
         indoorLocationManager.setOnPositionUpdateListener(new OnPositionUpdateListener() {
             @Override
             public void onPositionUpdate(LocationPosition locationPosition) {
                 //TODO: notify user within range
+                NotificationCompat.Builder notification = new NotificationCompat.Builder(this)
+                    .setSmallIcon(R.drawable.notification_icon)
+                    .setContentTitle("Oetkerlebnis gamified")
+                    .setContentText("Du hast ein Spiel entdeckt. Probiere es gleich mal aus!")
+                    .setPriority(NotificationCompat.PRIORITY_DEFAULT);
             }
 
             @Override
