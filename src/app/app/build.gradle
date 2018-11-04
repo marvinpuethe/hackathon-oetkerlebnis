@@ -41,4 +41,5 @@ dependencies {
     implementation group: 'com.microsoft.azure.cognitiveservices', name: 'azure-cognitiveservices-customvision-training', version: '1.0.2-beta'
 
     implementation 'com.estimote:sdk:1.4.5'
+    implementation 'com.estimote:indoorsdk:2.5.3'
 }
