@@ -32,7 +32,8 @@
             android:name=".SettingsActivity"
             android:label="@string/app_name" />
         <activity android:name=".LuckyActivity" />
-        <activity android:name=".quiz.QuestionActivity"></activity>
+        <activity android:name=".quiz.QuestionActivity" />
+        <activity android:name=".level.LevelActivity"></activity>
     </application>
 
 </manifest>
