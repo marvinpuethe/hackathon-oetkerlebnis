@@ -826,18 +826,16 @@ public class Camera2BasicFragment extends Fragment
 
                     ACS_Image_Classification ic = new ACS_Image_Classification();
                     try {
-                        String ret = ic.run_object_recognition(mFile.toString());
-                        System.out.println(ret);
-                        if(ret != null) {
-                            double value = Double.valueOf(ret);
-                            if(value >= 90) {
-                                //TODO: Trigger "LuckyActivity"
-                            } else {
-                                showToast("Wir sind uns nicht sicher, ob dies ein Produkt unseres Hauses ist. Bitte versuche es erneut!");
-                            }
+                        double predictionValue = ic.run_object_recognition(mFile.toString());
+
+                        System.out.println(predictionValue);
+
+                        if (predictionValue >= 70) {
+                            //TODO: Trigger "LuckyActivity"
                         } else {
-                            showToast("Das Bild konnte nicht erkannt werden. Bitte versuche es erneut!");
+                            showToast("Wir sind uns nicht sicher, ob dies ein Produkt unseres Hauses ist. Bitte versuche es erneut!");
                         }
+
                     } catch(Exception e) {
                         showToast("Es ist ein unbekannter Fehler aufgetreten!");
                         System.out.println(e.getMessage());

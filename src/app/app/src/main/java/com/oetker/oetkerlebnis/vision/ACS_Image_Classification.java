@@ -1,5 +1,7 @@
 package com.oetker.oetkerlebnis.vision;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.Nullable;
 
 import com.google.common.io.ByteStreams;
@@ -15,20 +17,26 @@ import com.microsoft.azure.cognitiveservices.vision.customvision.training.models
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.DomainType;
 import com.microsoft.azure.cognitiveservices.vision.customvision.training.models.Project;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.List;
 import java.util.UUID;
 
 public class ACS_Image_Classification {
+
     private static byte[] GetImage(String path)
     {
-        try {
-            File fi = new File(path);
-            byte[] fileContent = Files.readAllBytes(fi.toPath());
+        try (ByteArrayOutputStream os = new ByteArrayOutputStream()) {
 
-            return fileContent;
+            // Compress image to reduce file size for Azure Custom Vision API
+            Bitmap original = BitmapFactory.decodeFile(path);
+            original.compress(Bitmap.CompressFormat.JPEG, 80, os);
+
+            return os.toByteArray();
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
             e.printStackTrace();
@@ -37,7 +45,7 @@ public class ACS_Image_Classification {
     }
 
     @Nullable
-    public String run_object_recognition(String path) {
+    public double run_object_recognition(String path) {
         final String trainingApiKey = "54b99ae4ff6c413ca0059f2ba295fd38";
         TrainingApi trainClient = CustomVisionTrainingManager.authenticate(trainingApiKey);
 
@@ -55,7 +63,6 @@ public class ACS_Image_Classification {
 
         if (objectDetectionDomain == null) {
             System.out.println("Unexpected result; couldn't find object detection domain.");
-            return null;
         }
 
         Project project = trainer.getProject(UUID.fromString("0dbbe807-f10d-4fa3-8244-b7dbf55a771f"));
@@ -70,12 +77,15 @@ public class ACS_Image_Classification {
                 .withImageData(testImage)
                 .execute();
 
+        // Check for max prediction of classified objects
+        double maxPrediction = 0;
         for (Prediction prediction: results.predictions())
         {
-            double probability = prediction.probability() * 100.0f;
-            return Double.toString(probability);
+            if (prediction.probability() > maxPrediction) {
+                maxPrediction = prediction.probability();
+            }
         }
 
-        return null;
+        return (maxPrediction * 100);
     }
 }
